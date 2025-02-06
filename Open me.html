@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Valentine Proposal</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            text-align: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            transition: background 1s ease-in-out;
+        }
+        .container {
+            position: relative;
+        }
+        .question {
+            font-size: 32px;
+            font-weight: bold;
+            color: #fff8dc;
+            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 25px;
+        }
+        .buttons {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+	    z-index: 10; /* Ensure buttons are on top */
+	    touch-action: manipulation; 
+        }
+        button {
+            font-size: 22px;
+            padding: 14px 30px;
+            border: none;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            box-shadow: 3px 5px 10px rgba(0, 0, 0, 0.3);
+        }
+        .yes, .no {
+            background-color: white;
+            color: #d72638;
+        }
+        .yes:hover {
+            background-color: #d72638;
+            color: white;
+            transform: scale(1.2);
+        }
+        .no:hover {
+            background-color: #ffb3c1;
+            color: white;
+        }
+        .love-message {
+            display: none;
+            font-size: 36px;
+            font-weight: bold;
+            color: #ffdf00;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 2s ease-in-out;
+        }
+        .celebration {
+            display: none;
+            font-size: 50px;
+            color: #ffcc00;
+            animation: explode 1.5s infinite alternate ease-in-out;
+        }
+        .confetti {
+            display: none;
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            background: url('https://media1.giphy.com/media/5jT0jaNDsM6Ik7X9yq/200w.gif?cid=6c09b952g1bqpivw93wot6zqsjt6y83hpeixcgsxklgpzjmk&ep=v1_gifs_search&rid=200w.gif&ct=g');
+            background-size: cover;
+            top: 0;
+            left: 0;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes explode {
+            from { transform: scale(1); opacity: 0.8; }
+            to { transform: scale(1.3); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti"></div>
+    <div class="container">
+        <div class="question" id="question">Hi, will you be my Valentine? 😋❤️</div>
+        <div class="buttons">
+            <button class="yes" id="yesBtn">Yes 💖</button>
+            <button class="no" id="noBtn">No 😢</button>
+        </div>
+        <div class="love-message">Yay! I Love You Parinita.. ❤️👑<div class="celebration">🎉🎊🕺💃🎆</div></div>
+    </div>
+
+    <script>
+       	document.getElementById("yesBtn").addEventListener("click", showLove);
+	document.getElementById("yesBtn").addEventListener("touchend", showLove);
+	document.getElementById("noBtn").addEventListener("click", shrinkNo);
+	document.getElementById("noBtn").addEventListener("touchend", shrinkNo);
+	document.getElementById("yesBtn").addEventListener("touchstart", showLove);
+	document.getElementById("yesBtn").addEventListener("pointerup", showLove);
+	document.getElementById("noBtn").addEventListener("touchstart", shrinkNo);
+	document.getElementById("noBtn").addEventListener("pointerup", shrinkNo);
+
+
+        function showLove() {
+            document.querySelector('.buttons').style.display = 'none';
+            document.querySelector('.love-message').style.display = 'block';
+            document.querySelector('.celebration').style.display = 'block';
+            document.querySelector('.confetti').style.display = 'block';
+            document.body.style.background = 'linear-gradient(135deg, #ffcc00, #ff6699, #ff66ff)';
+            document.getElementById('question').style.display = 'none';
+        }
+
+        function shrinkNo() {
+            const noButton = document.querySelector('.no');
+            const yesButton = document.querySelector('.yes');
+            noButton.style.transform = 'scale(0.8)';
+            yesButton.style.transform = 'scale(1.5)';
+            noButton.textContent = 'Yes click kar be.. 🤨';
+        }
+    </script>
+</body>
+</html>
